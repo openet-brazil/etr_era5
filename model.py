@@ -240,7 +240,7 @@ def etr(tmin, tmax, tair, ws, dem, rad_24h):
     # psychrometric constant (kPa °C-1)
     const_psci=dem.expression(
             '0.000665* press ',{
-                    'pres':press}).rename('cte_psi')
+                    'press':press}).rename('cte_psi')
     
     # max actual vapor pressure (kPa)  
     ea_max = dem.expression(
@@ -271,7 +271,7 @@ def etr(tmin, tmax, tair, ws, dem, rad_24h):
             '(0.408*delta*(rn)+ cte_psi*(cn/(tair + 273))*ws*(es -ea))/'+
                                           '(delta + cte_psi*(1 + cd*ws))',{
             'delta':delta,
-            'rnn':rad_24h,
+            'rn':rad_24h,
             'cte_psi':const_psci,
             'cn':ee.Number(900),
             'cd':ee.Number(0.34),
